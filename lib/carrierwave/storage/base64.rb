@@ -28,10 +28,15 @@ module CarrierWave
           d ? "data:#{self.data[:content_type] || 'image/png'};base64,#{d}" : nil
         end
 
+        def filename
+          self.data[:file_name]
+        end
+
         def store(file)
           self.data = {
             :data => "#{::Base64.encode64(file.read)}",
-            :content_type => file.content_type }
+            :content_type => file.content_type,
+            :file_name => File.basename(file.file) }
         end
         
         def content_type
