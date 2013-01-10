@@ -36,7 +36,7 @@ module CarrierWave
           self.data = {
             :data => "#{::Base64.encode64(file.read)}",
             :content_type => file.content_type,
-            :file_name => File.basename(file.file) }
+            :file_name => ::File.basename(file.file) }
         end
         
         def content_type
